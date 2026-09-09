@@ -20,7 +20,7 @@ const MediaRow = (props) => {
 
 
 }
-
+export default MediaRow;
 
 
 
