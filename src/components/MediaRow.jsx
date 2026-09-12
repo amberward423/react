@@ -1,8 +1,8 @@
 const MediaRow = (props) => {
-    const {item} = props;
+    const {item, onSelect} = props;
     return (
 
-<tr key={item.media_id}>
+<tr key={item.media_id} onClick={() => onSelect(item)}> 
                 <td>
                   <img src={item.thumbnail} />
                 </td>
