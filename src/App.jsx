@@ -1,7 +1,6 @@
 import "./App.css";
 import Home from "./components/Home.jsx";
 
-import "./App.css";
 const App = () => {
   return (
     <>
