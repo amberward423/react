@@ -7,7 +7,7 @@ import Upload from "./views/Upload.jsx";
 import Single from "./views/Single.jsx";
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
