@@ -1,9 +1,15 @@
-import fetchData from "../utils/fetchData.js";
+import { fetchData } from "../utils/fetchData.js";
 import MediaRow from "../components/MediaRow.jsx";
-import {useState} from 'react';
+import { useState, useEffect } from "react";
 
 const Home = () => {
   const [mediaArray, setMediaArray] = useState([]);
+
+  useEffect(() => {
+    fetchData("/test.json").then((data) => {
+      setMediaArray(data);
+    });
+  }, []);
 
   return (
     <>
@@ -21,15 +27,10 @@ const Home = () => {
         </thead>
         <tbody>
           {mediaArray.map((item) => {
-            return (
-              <MediaRow
-                key={item.media_id}
-                item={item}
-              />
-            );
+            return <MediaRow key={item.media_id} item={item} />;
           })}
         </tbody>
-      </table> 
+      </table>
     </>
   );
 };
