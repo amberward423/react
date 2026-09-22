@@ -7,15 +7,17 @@ const Home = () => {
 
   useEffect(() => {
     fetchData(`${import.meta.env.VITE_MEDIA_API}/media`).then(async (data) => {
-      const newArray = await Promise.all(data.map(async (item) => {
-          const result = await fetchData(`${import.meta.env.VITE_AUTH_API}/users/${item.user_id}`);
+      const newArray = await Promise.all(
+        data.map(async (item) => {
+          const result = await fetchData(
+            `${import.meta.env.VITE_AUTH_API}/users/${item.user_id}`,
+          );
           return { ...item, username: result.username };
-        })
+        }),
       );
       setMediaArray(newArray);
     });
   }, []);
-
 
   return (
     <>
@@ -26,6 +28,7 @@ const Home = () => {
             <th>Thumbnail</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Username</th>
             <th>Created</th>
             <th>Size</th>
             <th>Type</th>
