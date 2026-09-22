@@ -1,1 +1,1 @@
-Open [link text here] in the browser (https://users.metropolia.fi/~amberwa/routing/)
+Open[React application](https://users.metropolia.fi/~amberwa/routing/)
