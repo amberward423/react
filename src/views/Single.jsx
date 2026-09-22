@@ -10,13 +10,13 @@ const Single = () => {
     <>
       <h2>{item.title}</h2>
       <p>{item.description}</p>
+      <p>{item.username}</p>
 
       {item.media_type === "image/jpeg" ? (
         <img src={item.filename} />
       ) : (
         <video src={item.filename} controls />
       )}
-
       <button onClick={() => navigate(-1)}>Go Back</button>
     </>
   );
