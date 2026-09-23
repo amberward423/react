@@ -2,8 +2,9 @@ import { Link, Outlet } from "react-router";
 
 const Layout = () => {
   return (
-    <>
-      <nav>
+    <div>
+      <nav className="bg-pink-300 p-4 text-black flex justify-around">
+        
         <Link to="/">Home</Link>
         <Link to="/profile">Profile</Link>
         <Link to="/upload">Upload</Link>
@@ -12,7 +13,7 @@ const Layout = () => {
       </nav>
 
       <Outlet />
-    </>
+    </div>
   );
 };
 
