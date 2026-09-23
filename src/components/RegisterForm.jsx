@@ -6,9 +6,14 @@ const RegisterForm = () => {
     password: "",
     email: "",
   };
-  const doRegister = (inputs) => {
+  const doRegister = async (inputs) => {
+    const result = await postRegister(inputs);
     console.log(inputs);
+    console.log(result);
   };
+
+
+
   const { inputs, handleInputChange, handleSubmit } = useForm(
     doRegister,
     initValues,

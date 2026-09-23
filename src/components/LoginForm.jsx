@@ -13,11 +13,16 @@ const LoginForm = () => {
 
   const doLogin = async (inputs) => {
     console.log(inputs);
+try{
     const result = await postLogin(inputs);
     console.log(result);
     localStorage.setItem("token", result.token);
-
     navigate("/");
+}
+catch(error){
+
+    console.log(error)
+}
   };
 
   const { inputs, handleInputChange, handleSubmit } = useForm(

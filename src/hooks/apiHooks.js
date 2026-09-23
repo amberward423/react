@@ -30,20 +30,27 @@ const useAuthentication = () => {
       },
       body: JSON.stringify(inputs),
     };
-const loginResult = await fetchData(
+    const loginResult = await fetchData(
       `${import.meta.env.VITE_AUTH_API}/auth/login`,
       fetchOptions,
     );
     return loginResult;
   };
-const postRegister = async (inputs) => {
+  const postRegister = async (inputs) => {
     const fetchOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(inputs),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputs),
     };
+    const registerResult = await fetchData(
+      `${import.meta.env.VITE_AUTH_API}/users`,
+      fetchOptions,
+    );
+    return registerResult;
+  };
+  return { postLogin, postRegister };
 };
 
 const useUser = () => {
@@ -55,19 +62,13 @@ const useUser = () => {
         Authorization: "Bearer " + token,
       },
     };
-    const userResult = await fetchData(
-      `${import.meta.env.VITE_AUTH_API}/users`,
-      fetchOptions,
-    );
-    return userResult;
-  };
+
     const userresult = await fetchData(
       import.meta.env.VITE_AUTH_API + "/users/token",
       fetchOptions,
     );
     setUser(userresult);
   };
-
   return { user, getUserByToken };
 };
 
