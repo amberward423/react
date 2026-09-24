@@ -1,12 +1,8 @@
-import { useEffect } from "react";
-import { useUser } from "../hooks/apiHooks.js";
+import {useContext } from "react";
+import {UserContext} from "../contexts/UserContext";
 
 const Profile = () => {
-  const { user, getUserByToken } = useUser();
-  console.log(user);
-  useEffect(() => {
-    getUserByToken();
-  }, []);
+   const {user} = useContext(UserContext);
   return (
     <>
       <h1>Profile</h1>

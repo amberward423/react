@@ -1,11 +1,15 @@
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {UserContext} from "../../contexts/UserContext.jsx";
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const {handleLogin} = useContext(UserContext);
+
   return (
     <>
+    
       <button
         onClick={() => {
           setIsLogin(!isLogin);
@@ -13,7 +17,7 @@ const Login = () => {
       >
         Switch
       </button>
-      {isLogin ? <LoginForm /> : <RegisterForm />}
+      {isLogin ? <LoginForm handleLogin= {handleLogin} /> : <RegisterForm />}
     </>
   );
 };
