@@ -1,13 +1,15 @@
-
-
+import { UserContext } from "../contexts/UserContext.jsx";
+import { useContext } from "react";
 
 const Logout = () => {
-    return  (
-        <>
-            <h2>Logout</h2>
-        </>
-    );
-};
+  const { handleLogout } = useContext(UserContext);
 
+  return (
+    <>
+      <h2>Logout</h2>
+      <button onClick={handleLogout}>Logout</button>
+    </>
+  );
+};
 
 export default Logout;
