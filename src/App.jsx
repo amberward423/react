@@ -18,6 +18,9 @@ const App = () => {
         <Route path="single" element={<Single />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
+        <Route path="upload" element={<Upload />} />
+
+
       </Route>
     </Routes>
   );

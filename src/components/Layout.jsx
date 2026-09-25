@@ -9,6 +9,7 @@ const Layout = () => {
         <Link to="/upload">Upload</Link>
         <Link to="/login">Login</Link>
         <Link to="/logout">Logout</Link>
+        <Link to="/upload">Upload</Link>
       </nav>
 
       <Outlet />

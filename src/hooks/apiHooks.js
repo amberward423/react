@@ -71,5 +71,24 @@ const useUser = () => {
   };
   return { user, getUserByToken };
 };
+const useFile = () => {
+  const postFile = async (file, token) => {
+    const formData = new FormData();
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(file, token),
+    };
+    const loginResult = await fetchData(
+      `${import.meta.env.VITE_UPLOAD_SERVER}/upload`,
+      fetchOptions,
+    );
+    return loginResult;
+  };
+
+  return { postFile };
+};
 
 export { useMedia, useAuthentication, useUser };
