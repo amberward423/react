@@ -33,7 +33,6 @@ const MediaRow = (props) => {
                 onClick={async () => {
                   const data = { title: "Updated Title", description: "Updated Description" };
                   const token = localStorage.getItem("token")
-                  await modifyMedia(item.media_id, data, token);
                   navigate("/")
                 }}
               >

@@ -111,7 +111,8 @@ const useFile = () => {
     );
     return uploadResult;
   };
-}
+  return { postFile };
+};
 const deleteMedia = async (media_id, token) => {
   const fetchOptions = {
     method: "DELETE",
@@ -142,4 +143,11 @@ const modifyMedia = async (media_id, data, token) => {
   return modifyResult;
 };
 
-export { useMedia, useAuthentication, useUser,useFile, deleteMedia, modifyMedia };
+export {
+  useMedia,
+  useAuthentication,
+  useUser,
+  useFile,
+  deleteMedia,
+  modifyMedia,
+};
