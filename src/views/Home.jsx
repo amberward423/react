@@ -1,7 +1,7 @@
 import MediaRow from "../components/MediaRow.jsx";
 import { useMedia } from "../hooks/apiHooks.js";
 const Home = () => {
-  const mediaArray = useMedia();
+  const { mediaArray } = useMedia();
   return (
     <>
       <h2>My Media</h2>

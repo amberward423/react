@@ -17,8 +17,30 @@ const useMedia = () => {
       setMediaArray(newArray);
     });
   }, []);
+  const postMedia = async (file, inputs, token) => {
+    const media = {
+      title: inputs.title,
+      description: inputs.description,
+      filename: file.data.filename,
+      filesize: file.data.filesize,
+      media_type: file.data.media_type,
+    };
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(media),
+    };
+    const mediaResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/media`,
+      fetchOptions,
+    );
+    return mediaResult;
+  };
 
-  return mediaArray;
+  return { mediaArray, postMedia };
 };
 
 const useAuthentication = () => {
@@ -72,6 +94,24 @@ const useUser = () => {
   return { user, getUserByToken };
 };
 
+const useFile = () => {
+  const postFile = async (file, token) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      body: formData,
+    };
+    const uploadResult = await fetchData(
+      `${import.meta.env.VITE_UPLOAD_SERVER}/upload`,
+      fetchOptions,
+    );
+    return uploadResult;
+  };
+}
 const deleteMedia = async (media_id, token) => {
   const fetchOptions = {
     method: "DELETE",
@@ -102,4 +142,4 @@ const modifyMedia = async (media_id, data, token) => {
   return modifyResult;
 };
 
-export { useMedia, useAuthentication, useUser, deleteMedia, modifyMedia };
+export { useMedia, useAuthentication, useUser,useFile, deleteMedia, modifyMedia };
