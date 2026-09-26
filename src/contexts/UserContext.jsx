@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { useAuthentication, useUser } from "../hooks/apiHooks";
 import { useNavigate } from "react-router";
 
@@ -37,5 +37,8 @@ const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+const useUserContext = () => {
+  return useContext(UserContext);
+};
 
-export { UserProvider, UserContext };
+export { UserProvider, UserContext, useUserContext };

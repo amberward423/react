@@ -72,4 +72,34 @@ const useUser = () => {
   return { user, getUserByToken };
 };
 
-export { useMedia, useAuthentication, useUser };
+const deleteMedia = async (media_id, token) => {
+  const fetchOptions = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  };
+  const deleteResult = await fetchData(
+    `${import.meta.env.VITE_MEDIA_API}/media/${media_id}`,
+    fetchOptions,
+  );
+  return deleteResult;
+};
+const modifyMedia = async (media_id, data, token) => {
+  const fetchOptions = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify(data),
+  };
+  const modifyResult = await fetchData(
+    `${import.meta.env.VITE_MEDIA_API}/media/${media_id}`,
+    fetchOptions,
+  );
+  return modifyResult;
+};
+
+export { useMedia, useAuthentication, useUser, deleteMedia, modifyMedia };
