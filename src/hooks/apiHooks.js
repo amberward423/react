@@ -1,5 +1,5 @@
 import { fetchData } from "../utils/fetchData.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
@@ -142,6 +142,66 @@ const modifyMedia = async (media_id, data, token) => {
   );
   return modifyResult;
 };
+const useLike = () => {
+  const postLike = async (media_id, token) => {
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    };
+    const mediaResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes/${media_id}`,
+      fetchOptions,
+    );
+    return mediaResult;
+  };
+
+  const deleteLike = async (media_id, token) => {
+    const fetchOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    };
+    const mediaResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes/${media_id}`,
+      fetchOptions,
+    );
+    return mediaResult;
+  };
+const getLikeCountByMediaId = async (media_id) => {
+    const fetchOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const mediaResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes/${media_id}`,
+      fetchOptions,
+    );
+    return mediaResult;
+  };
+  const getLikeByUser = async (user_id,token) => {
+    const fetchOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+
+      },
+    };
+    const mediaResult = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes/byuser/${user_id}`,
+      fetchOptions,
+    );
+    return mediaResult;
+  };
+  return { postLike, deleteLike, getLikeCountByMediaId,getLikeByUser};
+};
 
 export {
   useMedia,
@@ -150,4 +210,5 @@ export {
   useFile,
   deleteMedia,
   modifyMedia,
+  useLike,
 };
