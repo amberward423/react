@@ -1,11 +1,12 @@
+console.log("SIngle LOADED");
 import { useLocation, useNavigate } from "react-router";
+import Likes from "../components/Likes";
 
 const Single = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const item = location.state.item;
-
   return (
     <>
       <h2>{item.title}</h2>
@@ -17,6 +18,7 @@ const Single = () => {
       ) : (
         <video src={item.filename} controls />
       )}
+      <Likes media_id={item.media_id} />
       <button onClick={() => navigate(-1)}>Go Back</button>
     </>
   );

@@ -1,5 +1,5 @@
 import { fetchData } from "../utils/fetchData.js";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
@@ -172,7 +172,7 @@ const useLike = () => {
     );
     return mediaResult;
   };
-const getLikeCountByMediaId = async (media_id) => {
+  const getLikeCountByMediaId = async (media_id) => {
     const fetchOptions = {
       method: "GET",
       headers: {
@@ -180,18 +180,18 @@ const getLikeCountByMediaId = async (media_id) => {
       },
     };
     const mediaResult = await fetchData(
-      `${import.meta.env.VITE_MEDIA_API}/likes/${media_id}`,
+      `${import.meta.env.VITE_MEDIA_API}/likes/bymedia/${media_id}`,
       fetchOptions,
     );
     return mediaResult;
   };
-  const getLikeByUser = async (user_id,token) => {
+
+  const getLikeByUser = async (user_id, token) => {
     const fetchOptions = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-
+        Authorization: "Bearer " + token,
       },
     };
     const mediaResult = await fetchData(
@@ -200,7 +200,7 @@ const getLikeCountByMediaId = async (media_id) => {
     );
     return mediaResult;
   };
-  return { postLike, deleteLike, getLikeCountByMediaId,getLikeByUser};
+  return { postLike, deleteLike, getLikeCountByMediaId, getLikeByUser };
 };
 
 export {
