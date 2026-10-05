@@ -150,15 +150,18 @@ const useLike = () => {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
+      body: JSON.stringify({
+        media_id: media_id,
+      }),
     };
     const mediaResult = await fetchData(
-      `${import.meta.env.VITE_MEDIA_API}/likes/${media_id}`,
+      `${import.meta.env.VITE_MEDIA_API}/likes`,
       fetchOptions,
     );
     return mediaResult;
   };
 
-  const deleteLike = async (media_id, token) => {
+  const deleteLike = async (like_id, token) => {
     const fetchOptions = {
       method: "DELETE",
       headers: {
@@ -167,7 +170,7 @@ const useLike = () => {
       },
     };
     const mediaResult = await fetchData(
-      `${import.meta.env.VITE_MEDIA_API}/likes/${media_id}`,
+      `${import.meta.env.VITE_MEDIA_API}/likes/${like_id}`,
       fetchOptions,
     );
     return mediaResult;
@@ -180,7 +183,7 @@ const useLike = () => {
       },
     };
     const mediaResult = await fetchData(
-      `${import.meta.env.VITE_MEDIA_API}/likes/bymedia/${media_id}`,
+      `${import.meta.env.VITE_MEDIA_API}/likes/count/${media_id}`,
       fetchOptions,
     );
     return mediaResult;
@@ -200,7 +203,28 @@ const useLike = () => {
     );
     return mediaResult;
   };
-  return { postLike, deleteLike, getLikeCountByMediaId, getLikeByUser };
+
+  const getLikesByMediaAndUser = async (media_id, token) => {
+    const fetchOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    };
+    const likes_result = await fetchData(
+      `${import.meta.env.VITE_MEDIA_API}/likes/bymedia/user/${media_id}`,
+      fetchOptions,
+    );
+    return likes_result;
+  };
+  return {
+    postLike,
+    deleteLike,
+    getLikeCountByMediaId,
+    getLikeByUser,
+    getLikesByMediaAndUser,
+  };
 };
 
 export {

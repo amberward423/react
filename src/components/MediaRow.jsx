@@ -1,11 +1,11 @@
-import { Link, useNavigate} from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useUserContext } from "../contexts/UserContext.jsx";
 import { deleteMedia, modifyMedia } from "../hooks/apiHooks.js";
 
 const MediaRow = (props) => {
   const { item } = props;
   const user = useUserContext();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   console.log(user);
   return (
@@ -31,9 +31,12 @@ const MediaRow = (props) => {
               <button
                 className="px-2 py-1 rounded bg-pink-200 text-black"
                 onClick={async () => {
-                  const data = { title: "Updated Title", description: "Updated Description" };
-                  const token = localStorage.getItem("token")
-                  navigate("/")
+                  const data = {
+                    title: "Updated Title",
+                    description: "Updated Description",
+                  };
+                  const token = localStorage.getItem("token");
+                  navigate("/");
                 }}
               >
                 Modify
@@ -41,9 +44,9 @@ const MediaRow = (props) => {
               <button
                 className="px-2 py-1 rounded bg-pink-200 text-black"
                 onClick={async () => {
-                  const token = localStorage.getItem("token")
+                  const token = localStorage.getItem("token");
                   await deleteMedia(item.media_id, token);
-                  navigate("/")
+                  navigate("/");
                 }}
               >
                 Delete
