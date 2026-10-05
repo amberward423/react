@@ -8,8 +8,11 @@ const MediaRow = (props) => {
   const navigate = useNavigate();
 
   console.log(user);
+  console.log(item.user_id);
+  console.log(user.user.user_id, item.user_id);
+
   return (
-    <tr key={item.media_id}>
+    <tr className="hover:bg-pink-50 transition" key={item.media_id}>
       <td>
         <img src={item.thumbnail} />
       </td>
@@ -19,17 +22,20 @@ const MediaRow = (props) => {
       <td>{new Date(item.created_at).toLocaleString("fi-FI")}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
-
       <td>
-        <Link to="/single" state={{ item }}>
+        <Link
+          className="px-4 py-2 rounded bg-pink-400 text-black hover:bg-pink-200"
+          to="/single"
+          state={{ item }}
+        >
           Show
         </Link>{" "}
         {user &&
-          (user.user.user_id === item.user_id ||
+          (user.user.user.user_id === item.user_id ||
             user.user.level_name === "Admin") && (
             <>
               <button
-                className="px-2 py-1 rounded bg-pink-200 text-black"
+                className="px-2 py-1 rounded bg-pink-400 text-black"
                 onClick={async () => {
                   const data = {
                     title: "Updated Title",
@@ -42,7 +48,7 @@ const MediaRow = (props) => {
                 Modify
               </button>
               <button
-                className="px-2 py-1 rounded bg-pink-200 text-black"
+                className="px-2 py-1 rounded bg-pink-400 text-black"
                 onClick={async () => {
                   const token = localStorage.getItem("token");
                   await deleteMedia(item.media_id, token);

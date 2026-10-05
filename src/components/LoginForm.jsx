@@ -13,16 +13,14 @@ const LoginForm = () => {
 
   const doLogin = async (inputs) => {
     console.log(inputs);
-try{
-    const result = await postLogin(inputs);
-    console.log(result);
-    localStorage.setItem("token", result.token);
-    navigate("/");
-}
-catch(error){
-
-    console.log(error)
-}
+    try {
+      const result = await postLogin(inputs);
+      console.log(result);
+      localStorage.setItem("token", result.token);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const { inputs, handleInputChange, handleSubmit } = useForm(
@@ -55,7 +53,12 @@ catch(error){
             autoComplete="current-password"
           />
         </div>
-        <button type="submit">Login</button>
+        <button
+          className="px-4 py-2 rounded bg-pink-400 text-black hover:bg-pink-200"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </>
   );

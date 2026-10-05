@@ -7,6 +7,8 @@ const Login = () => {
   return (
     <>
       <button
+        className="px-4 py-2 rounded bg-pink-400 text-black hover:bg-pink-200"
+
         onClick={() => {
           setIsLogin(!isLogin);
         }}

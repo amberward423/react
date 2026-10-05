@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router";
+import Likes from "../components/Likes.jsx";
 
 const Single = () => {
   const location = useLocation();
@@ -17,7 +18,13 @@ const Single = () => {
       ) : (
         <video src={item.filename} controls />
       )}
-      <button onClick={() => navigate(-1)}>Go Back</button>
+      <Likes media_id={item.media_id} />
+      <button
+        className="px-4 py-2 rounded bg-pink-400 text-black hover:bg-pink-200"
+        onClick={() => navigate(-1)}
+      >
+        Go Back
+      </button>
     </>
   );
 };

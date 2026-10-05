@@ -4,8 +4,7 @@ const Home = () => {
   const mediaArray = useMedia();
   return (
     <>
-      <h2>My Media</h2>
-      <table>
+      <table className="w-full text-center">
         <thead>
           <tr>
             <th>Thumbnail</th>

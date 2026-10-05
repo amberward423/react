@@ -7,12 +7,14 @@ const RegisterForm = () => {
     email: "",
   };
   const doRegister = async (inputs) => {
-    const result = await postRegister(inputs);
-    console.log(inputs);
-    console.log(result);
+    try {
+      const result = await postRegister(inputs);
+      console.log(inputs);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-
 
   const { inputs, handleInputChange, handleSubmit } = useForm(
     doRegister,
@@ -54,7 +56,12 @@ const RegisterForm = () => {
             autoComplete="email"
           />
         </div>
-        <button type="submit">Register</button>
+        <button
+          className="px-4 py-2 rounded bg-pink-400 text-black hover:bg-pink-200"
+          type="submit"
+        >
+          Register
+        </button>
       </form>
     </>
   );
